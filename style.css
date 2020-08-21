@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+/* main colors */
+:root{
+    --main-light: #5268e7;
+    --main-deep: #3e54d2;
+    --main-input: #6075eb;
+}
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; height: 3px; border-radius: 3px;}
+::-webkit-scrollbar-track {  background-color: var(--main-light);}
+::-webkit-scrollbar-thumb { height: 50px; background-color: var(--main-deep); border-radius: 3px;}
+body{
+    color: azure;
+    background-color: var(--main-light);
+    background-image:   url('covid-bg.svg'), 
+                        url('covid-bg.svg'), 
+                        url('covid-bg.svg');
+    background-position:    5% 40%, 
+                            38% 10%,
+                            70% 30%;
+    background-size: 85px, 140px;
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif;
+}
+.container{
+    margin: 0 auto;
+    width: 80%;
+    padding: 0 25px;
+}
+.motto{
+    font-size: 2.5em;
+    margin: 75px 75px 0;
+    text-align: right;
+    cursor: default;
+    transition: color .4s;
+}
+.motto:hover{
+    color: rgb(255, 99, 132);
+}
+.motto-property{
+    font-size: 2em;
+    margin: 0 75px 70px;
+    text-align: right;
+}
+.output{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around
+}
+.output-per-day{
+    margin-top: 20px;
+}
+.output-info{
+    position: relative;
+    font-size: 1.2em;
+    text-align: center;
+    background-color: var(--main-deep);
+    width: 20%;
+    min-width: 165px;
+    margin: 25px 15px;
+    padding: 20px;
+    cursor: default;
+    border-radius: 7px;
+}
+.output-info::before{
+    content: "cases";
+    font-size: 1.05em;
+    display: block;
+    position: absolute;
+    left: 0;
+    padding: 5px 10px;
+    border-radius: 7px 7px 7px 0;
+    background-color: var(--main-input);
+    z-index: -1;
+    transform: translateY(-140%);
+    transition: color .4s;
+}
+.output-info:hover::before{
+    color: rgb(255, 99, 132);
+}
+.output .output-info:nth-child(1)::before{
+    content: "cases";
+}
+.output .output-info:nth-child(2)::before{
+    content: "deaths";
+}
+.output .output-info:nth-child(3)::before{
+    content: "recovered";
+}
+.output-per-day .output-info:nth-child(1)::before{
+    content: "today cases";
+}
+.output-per-day .output-info:nth-child(2)::before{
+    content: "today deaths";
+}
+/* graphical scheme */
+.graph{
+    position: relative;
+    margin: 50px 0;
+    width: 100%;
+    height: 435px;
+    background-color: var(--main-input);
+    border-radius: 7px;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    font-size: 1.2em;
+    background: var(--main-deep);
+    background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+    display: none;
+}
+/* Custom Select */
+.select {
+    position: relative;
+    display: flex;
+    width: 40%;
+    max-width: 400px;
+    min-width: 260px;
+    margin: 50px auto;
+    height: 65px;
+    line-height: 3;
+    background: var(--main-deep);
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+}
+select {
+    flex: 1;
+    padding: 0 25px;
+    color: azure;
+    cursor: pointer;
+}
+option:hover{
+    filter: hue-rotate(190deg);
+}
+/* Arrow */
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    border-radius: 5px;
+    padding: 0 1em;
+    background: var(--main-input);
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+}
+.select:hover::after {
+    color: rgb(255, 99, 132);
+}
+
+.tabs {
+    width: 400px;
+    margin: 10px auto 50px;
+    display: flex;
+    position: relative;
+    background-color: var(--main-input);
+    box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+    padding: 0.75rem;
+    border-radius: 99px;
+}
+.tabs * {
+    z-index: 2;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 54px;
+    width: 200px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border-radius: 99px;
+    cursor: pointer;
+    -webkit-transition: color 0.15s ease-in;
+    transition: color 0.15s ease-in;
+}
+input[type="radio"]:checked + label {
+    color: azure;
+}
+input[type="radio"]:checked + label > .notification {
+    background-color: var(--main-deep);
+    color: #fff;
+}
+
+input[id="radio-1"]:checked ~ .glider {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+}
+
+input[id="radio-2"]:checked ~ .glider {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+}
+
+.glider {
+    position: absolute;
+    display: -webkit-box;
+    display: flex;
+    height: 54px;
+    width: 47%;
+    background-color: var(--main-deep);
+    z-index: 1;
+    border-radius: 99px;
+    -webkit-transition: 0.25s ease-out;
+    transition: 0.25s ease-out;
+}
+@media (max-width: 887px){
+    .output-per-day{
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 600px){
+    .output-info{
+        width: 60%;
+    }
+    .select {
+        width: 80%;
+        min-width: auto;
+    }
+    .tabs {
+        width: 90%;
+    }
+    .motto{
+        font-size: 2.2em;
+        margin: 50px 33px 25px;
+        text-align: center;
+    }
+    .motto-property{
+        font-size: 1.9em;
+        margin: 0 33px 25px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 411px){
+    .container{
+        width: 95%;
+        padding: 0;
+    }
+}
